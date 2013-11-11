@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1.
+        Character Info
+    ul
+        each character, i in battle_pets
+            li
+                a(href="http://us.battle.net/api/wow/character/#{character.thumbnail}")= character.name  + ", Kills: " + character.totalHonorableKills
