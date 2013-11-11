@@ -3,43 +3,50 @@ var http = require('http');
  * GET home page.
  */
 
-var options = {
-    host: 'us.battle.net',
-    path: '/api/wow/character/firetree/Bisbot?fields=pets'
-};
 
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
-};
 
-exports.helloworld = function(req, res){
-    res.render('helloworld', {title: 'Hello, World!'});
-};
+//exports.index = function(req, res){
+//  res.render('index', { title: 'Express' });
+//};
+//
+//exports.helloworld = function(req, res){
+//    res.render('helloworld', {title: 'Hello, World!'});
+//};
+//
+//exports.battle_pets = function(db){
+//    return function(req, res) {
+//        var collection = db.get('char_info');
+//        collection.find({}, {}, function(e, docs){
+//            res.render('battle_pets', {
+//                "battle_pets" : docs
+//            });
+//        });
+//    };
+//};
 
-exports.battle_pets = function(db){
-    return function(req, res) {
-        var collection = db.get('char_info');
-        collection.find({}, {}, function(e, docs){
-            res.render('battle_pets', {
-                "battle_pets" : docs
-            });
-        });
+function getJsonData(callback) {
+    var options = {
+        host: 'us.battle.net',
+        path: '/api/wow/character/firetree/Bisbot?fields=pets'
     };
-};
 
-exports.pets = function(request, response){
-    callback = function (response) {
+    http.request(options).on('response',function (response) {
         var str = '';
-        var jpar = '';
         response.on('data', function (chunk) {
             str += chunk;
         });
         response.on('end', function () {
-            jpar = JSON.parse(str);
-//            console.log(jpar);
-//            console.log(jpar.pets.collected[0]);
+            callback(JSON.parse(str));
         });
-    };
-    http.request(options, callback).end();
-    response.render('pets');
+    }).end();
+}
+
+
+exports.index = function (request, response) {
+    getJsonData(function (battle_info) {
+        console.log(battle_info);
+        response.render('index', {
+            "battle_info": battle_info
+        });
+    });
 };
