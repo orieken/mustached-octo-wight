@@ -44,7 +44,7 @@ function getJsonData(callback) {
 
 exports.index = function (request, response) {
     getJsonData(function (battle_info) {
-        console.log(battle_info);
+        console.log(battle_info.pets.collected[0]);
         response.render('index', {
             "battle_info": battle_info
         });
