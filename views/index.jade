@@ -1,33 +1,48 @@
 extends layout
 
 block content
-    section.
-    header.
-    h1.
-        #{battle_info.name}
-    img(src='http://us.battle.net/static-render/us/' + battle_info.thumbnail)
-    #realm_name.
-        #{battle_info.realm}
-    #player_level.
-        #{battle_info.level}
-    section#battle_pets.
-        Battle Pets
-    for pet in battle_info.pets.collected
-        #number_collected.
-            #{pet.numCollected}
-        #number_not_collected.
-            #{pet.numNotCollected}
-        ul
-            li
-                section(id='#{pet.creatureId}')
-                    #pet_name.
-                        #{pet.name}
-                    img(src='http://us.media.blizzard.com/wow/icons/56/' + pet.icon + '.jpg')
-                    #pet_level.
-                        #{pet.stats.level}
-                    #pet_health.
-                        #{pet.stats.health}
-                    #pet_power.
-                        #{pet.stats.power}
-                    #pet_speed.
-                        #{pet.stats.speed}
+
+    section(ng-app="app",ng-controller="petsController")
+        header.
+        h1.
+            #{battle_info.name}
+        img(src='http://us.battle.net/static-render/us/' + battle_info.thumbnail)
+        #realm_name.
+            #{battle_info.realm}
+        #player_level.
+            #{battle_info.level}
+
+        section#battle_pets.container
+            h3 Battle Pets
+            ul#sortable
+                li(ng-repeat="pet in pets.collected",id="{{pet.creatureId}}",data-drag="true", jqyoui-draggable="{index: {{$index}}, animate: true}")
+                    div.pet_box
+                        div {{pet.name}}
+                        img(ng-src='http://us.media.blizzard.com/wow/icons/56/{{pet.icon}}.jpg')
+
+        //section#battle_pets.co
+        //    h3 Battle Pets
+        //    ul#p_list
+        //        for pet in battle_info.pets.collected
+        //            li
+        //                div.pet_box(id='#{pet.creatureId}')
+        //                    #pet_name.
+        //                        #{pet.name}
+        //                    img(src='http://us.media.blizzard.com/wow/icons/56/' + pet.icon + '.jpg')
+        //                    #pet_level.
+        //                        #{pet.stats.level}
+        //                    #pet_health.
+        //                        #{pet.stats.health}
+        //                    #pet_power.
+        //                        #{pet.stats.power}
+        //                    #pet_speed.
+        //                        #{pet.stats.speed}
+
+
+    script(src='http://code.jquery.com/jquery-1.10.1.min.js')
+    script(src='http://code.jquery.com/ui/1.10.3/jquery-ui.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.2/angular.min.js')
+    //script(src='/javascripts/angular-dragdrop.min.js')
+    script(src='/javascripts/app.js')
+    script(src='/javascripts/ctrl-dnd.js')
+    script(src='/stylesheets/style.css')

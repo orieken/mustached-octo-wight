@@ -1,8 +1,45 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+/*a {*/
+    /*color: #00B7FF;*/
+/*}*/
+
+/*.thumbnail {*/
+    /*height: 100px !important;*/
+    /*border: 4px green;*/
+/*}*/
+
+/*div.pet_box {*/
+    /*border: double 4px green;*/
+    /*padding: 5px 10px;*/
+/*}*/
+
+.handle {
+    width: 16px;
+    height: 16px;
+    margin: 3px 1em auto 0;
+    background-image: url(../images/handle.png);
+    float: left;
+    cursor: move;
+}
+
+#sortable {
+    border: solid 4px red;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 90%;
+}
+#sortable li {
+    border: double 4px green;
+    margin: 3px ;
+    padding: 1px;
+    float: left;
+    width: 100px;
+    height: 90px;
+    font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+    text-align: center;
 }

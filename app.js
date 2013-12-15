@@ -1,10 +1,25 @@
 var express = require('express');
 var routes = require('./routes');
-var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
 
+function getJsonData(callback) {
+    var options = {
+        host: 'us.battle.net',
+        path: '/api/wow/character/firetree/Bisbot?fields=pets'
+    };
+
+    http.request(options).on('response',function (response) {
+        var str = '';
+        response.on('data', function (chunk) {
+            str += chunk;
+        });
+        response.on('end', function () {
+            callback(JSON.parse(str));
+        });
+    }).end();
+}
 
 var app = express();
 
@@ -28,6 +43,13 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+
+app.get('/pets', function(request, response) {
+    getJsonData(function (battle_info) {
+        response.writeHead(200, { 'Content-Type': 'application/json'});
+        response.end(JSON.stringify(battle_info.pets));
+    });
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
