@@ -17,7 +17,8 @@
 //    };
 //});
 
-$(function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
+$(function () {
+    $("#sortable_right, #sortable_left").sortable({
+        connectWith: ".connectedSortable"
+    }).disableSelection();
 });

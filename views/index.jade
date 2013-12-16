@@ -14,7 +14,14 @@ block content
 
         section#battle_pets.container
             h3 Battle Pets
-            ul#sortable
+            aside#right
+                ul#sortable_right.connectedSortable
+                    li(ng-repeat="pet in pets.collected",id="{{pet.creatureId}}",data-drag="true", jqyoui-draggable="{index: {{$index}}, animate: true}")
+                        div.pet_box
+                            div {{pet.name}}
+                            img(ng-src='http://us.media.blizzard.com/wow/icons/56/{{pet.icon}}.jpg')
+        aside#left
+            ul#sortable_left.connectedSortable
                 li(ng-repeat="pet in pets.collected",id="{{pet.creatureId}}",data-drag="true", jqyoui-draggable="{index: {{$index}}, animate: true}")
                     div.pet_box
                         div {{pet.name}}

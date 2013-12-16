@@ -1,20 +1,19 @@
 body {
-    padding: 50px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 /*a {*/
-    /*color: #00B7FF;*/
+/*color: #00B7FF;*/
 /*}*/
 
 /*.thumbnail {*/
-    /*height: 100px !important;*/
-    /*border: 4px green;*/
+/*height: 100px !important;*/
+/*border: 4px green;*/
 /*}*/
 
 /*div.pet_box {*/
-    /*border: double 4px green;*/
-    /*padding: 5px 10px;*/
+/*border: double 4px green;*/
+/*padding: 5px 10px;*/
 /*}*/
 
 .handle {
@@ -26,16 +25,37 @@ body {
     cursor: move;
 }
 
-#sortable {
-    border: solid 4px red;
+
+#sortable_right {
+    background-color: green;
     list-style-type: none;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
-    width: 90%;
+    width: 40%;
+    border: 1px solid red;
+    float: right;
 }
-#sortable li {
+
+#sortable_left {
+    background-color: blue;
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 40%;
+    border: 1px solid red;
+    float: left;
+}
+#sortable_right li {
+    background-color: lightgreen;
+}
+#sortable_left li {
+    background-color: lightblue;
+}
+
+#sortable_right li,
+#sortable_left li {
     border: double 4px green;
-    margin: 3px ;
+    margin: 3px;
     padding: 1px;
     float: left;
     width: 100px;
