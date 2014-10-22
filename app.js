@@ -7,7 +7,7 @@ var path = require('path');
 function getJsonData(callback) {
     var options = {
         host: 'us.battle.net',
-        path: '/api/wow/character/firetree/Bisbot?fields=pets'
+        path: '/api/wow/character/firetree/Rieken?fields=pets'
     };
 
     http.request(options).on('response',function (response) {
