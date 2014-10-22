@@ -24,7 +24,7 @@ function getJsonData(callback) {
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 9000);
+app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -51,6 +51,6 @@ app.get('/pets', function(request, response) {
     });
 });
 
-http.createServer(app).listen(9000, function(){
+http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
